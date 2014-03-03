@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#path=$(dirname $0)
+#echo $path;
+content_type="Content-type: application/json"
+jar="tmp/cookies.txt"
+CURL="curl -v --cookie $jar --cookie-jar $jar"
+
+# curl -v --cookie cookies.txt --cookie-jar cookies.txt http://localhost:3000/
+
+if [ $# == 0 ]; then
+    echo "error: Missing required hosts to contact"
+    exit 1
+fi
+
+for i in $@;
+do
+    $CURL $i
+    echo ""
+done
